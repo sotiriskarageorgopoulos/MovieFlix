@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/app.css" rel="stylesheet" type="text/css">
+    <title>MovieFlix</title>
+</head>
+<nav>
+    <p class="movieflix-title">MovieFlix</p>
+    <a href="./comment_history.html" class="history-choice">Ιστορικό Κριτικών</a>
+    <button type="button" class="register-nav-button">Αποσύνδεση</button>
+</nav>
+
+<body>
+    <article>
+        <section>
+            <button class="delete-account-button">Διαγραφή Λογαριασμού</button>
+            <h1 class="heading">Προτεινόμενες Ταινίες</h1>
+            <section class="movies-layout">
+                <figure>
+                    <p class="heading">Title</p>
+                    <img src="../icons/avengers_endgame.jpg" alt="Title">
+                    <p class="release-year">Έτος Κυκλοφορίας: 2020</p>
+                    <a>Δες περισσότερα...</a>
+                </figure>
+            </section>
+        </section>
+        <section>
+            <h1 class="heading">Αναζήτηση με βάση:</h1>
+            <form class="search-form">
+                <label for="searchTitle" class="search-legend"><b class="search-title">Τίτλο</b>
+                    <input id="searchTitle" class="search-input" type="text" placeholder="Π.χ Avengers: Endgame">
+                </label>
+                <button type="button" class="search-button">Aναζήτηση</button>
+            </form>
+            <form class="search-form">
+                <label for="searchYear" class="search-legend"><b class="search-title">Έτος Κυκλοφορίας</b>
+                    <input id="searchYear" class="search-input" type="text" placeholder="Π.χ 2019">
+                </label>
+                <button type="button" class="search-button">Aναζήτηση</button>
+            </form>
+            <form class="search-form">
+                <label for="searchActor" class="search-legend"><b class="search-title">Πρωταγωνιστές</b>
+                    <input id="searchActor" class="search-input" type="text" placeholder="Π.χ Robert Downey Jr.">
+                </label>
+                <button type="button" class="search-button">Aναζήτηση</button>
+            </form>
+        </section>
+    </article>
+</body>
+<footer>
+    <article class="footer-layout">
+        <section id="footer-msg">
+            <h3>Πάνω από 1000 ταινίες διαθέσιμες!!!</h3>
+        </section>
+        <section id="footer-copyright">
+            <h3>&copy;Copyright
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+            </h3>
+        </section>
+        <section id="footer-contact-details">
+            <a href="tel:+302100000000000">
+                <p class="phone-icon icon"> +302100000000000</p>
+            </a>
+            <a href="movie@flix.com">
+                <p class="envelope-icon icon"> movie@flix.com</p>
+            </a>
+        </section>
+    </article>
+</footer>
+<script src="https://use.fontawesome.com/4d997e20ff.js"></script>
+
+</html>
