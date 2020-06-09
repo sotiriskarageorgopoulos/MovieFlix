@@ -8,12 +8,57 @@
     <title>MovieFlix</title>
 </head>
 <nav>
-    <p class="movieflix-title">MovieFlix</p>
-    <button type="button" class="register-nav-button">Εγγραφή</button>
+    <a href="" class="movieflix-title">MovieFlix</a>
+    <a href="./users_comments.html" class="user-comment">Σχόλια Χρηστών</a>
+    <a href="./users.html" class="users">Χρήστες</a>
+    <button type="button" class="register-nav-button">Απόσυνδεση</button>
 </nav>
 
 <body>
-
+    <article>
+        <section class="insert-movie-layout">
+            <form>
+                <h1>Εισαγωγή Ταινίας</h1>
+                <legend for="title" class="admin-input">Τίτλος ταινίας*
+                    <input type="text" id="title" name="title" />
+                </legend>
+                <legend for="numOfActors" class="admin-input">Πλήθος ΗΘοποιών*
+                    <input type="number" id="numOfActors" name="numOfActors" min="0" />
+                </legend>
+                <div id="inputActors"></div>
+                <button type="submit" class="insert-button">Εισαγωγή</button>
+            </form>
+        </section>
+        <section class="delete-movie-layout">
+            <form>
+                <h1>Διαγραφή Ταινίας</h1>
+                <legend for="title">Τίτλος ταινίας*
+                    <input type="text" id="title" name="title" />
+                </legend>
+                <button type="submit" class="delete-button">Διαγραφή</button>
+            </form>
+        </section>
+        <section class="update-movie-layout">
+            <form>
+                <h1>Ενημέρωση Ταινίας</h1>
+                <legend for="title" class="admin-input">Τίτλος ταινίας*
+                    <input type="text" id="title" name="title" />
+                </legend>
+                <legend for="numOfActors" class="admin-input">Έτος Κυκλοφορίας
+                    <input type="number" id="numOfActors" name="numOfActors" min="0" />
+                </legend>
+                <legend for="numOfActors" class="admin-input">Πλήθος ΗΘοποιών*
+                    <input type="number" id="numOfActors" name="numOfActors" min="0" />
+                </legend>
+                <div id="inputActors"></div>
+                <div id="newActors"></div>
+                <label for="plot">Πλοκή
+                    <textarea name="plot" id="plot" rows="8" maxlength="300"></textarea>
+                </label>
+                <button type="submit" class="update-button">Ενημέρωση</button>
+            </form>
+        </section>
+    </article>
 </body>
 <footer>
     <article class="footer-layout">
