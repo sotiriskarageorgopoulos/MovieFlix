@@ -11,7 +11,7 @@
     <a href="" class="movieflix-title">MovieFlix</a>
     <a href="./users_comments.html" class="user-comment">Σχόλια Χρηστών</a>
     <a href="./users.html" class="users">Χρήστες</a>
-    <button type="button" class="register-nav-button">Απόσυνδεση</button>
+    <button type="button" class="register-nav-button" onclick="logOut()">Απόσυνδεση</button>
 </nav>
 
 <body>
@@ -23,7 +23,7 @@
                     <input type="text" id="title" name="title" />
                 </legend>
                 <legend for="numOfActors" class="admin-input">Πλήθος ΗΘοποιών*
-                    <input type="number" id="numOfActors" name="numOfActors" min="0" />
+                    <input type="number" id="numOfActors" name="numOfActors" min="0" onchange="createInputs()" />
                 </legend>
                 <div id="inputActors"></div>
                 <button type="submit" class="insert-button">Εισαγωγή</button>
@@ -44,12 +44,10 @@
                 <legend for="title" class="admin-input">Τίτλος ταινίας*
                     <input type="text" id="title" name="title" />
                 </legend>
-                <legend for="numOfActors" class="admin-input">Έτος Κυκλοφορίας
-                    <input type="number" id="numOfActors" name="numOfActors" min="0" />
+                <legend for="releaseYear" class="admin-input">Έτος Κυκλοφορίας
+                    <input type="number" id="releaseYear" name="numOfActors" min="0" />
                 </legend>
-                <legend for="numOfActors" class="admin-input">Πλήθος ΗΘοποιών*
-                    <input type="number" id="numOfActors" name="numOfActors" min="0" />
-                </legend>
+                <input type="number" id="numOfActors" name="numOfActors" min="0" />
                 <div id="inputActors"></div>
                 <div id="newActors"></div>
                 <label for="plot">Πλοκή
@@ -83,5 +81,6 @@
     </article>
 </footer>
 <script src="https://use.fontawesome.com/4d997e20ff.js"></script>
+<script src="../js/index.js"></script>
 
 </html>

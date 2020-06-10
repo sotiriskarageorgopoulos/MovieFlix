@@ -1,0 +1,21 @@
+{
+    "name": "Sotiris",
+    "e-mail": "sot@domain.com",
+    "password": "12345",
+    "comments": [{
+        "desc": "",
+        "grade": "",
+        "isDeleted": ""
+    }],
+    "category": "admin"
+} {
+    "name": "Spiros",
+    "e-mail": "sp@domain.com",
+    "password": "12345",
+    "comments": [{
+        "desc": "",
+        "grade": "",
+        "isDeleted": ""
+    }],
+    "category": "user"
+}

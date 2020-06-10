@@ -13,10 +13,6 @@ a:hover {
     cursor: pointer;
 }
 
-a#register-nav-btn {
-    color: #28A745;
-}
-
 nav {
     display: flex;
     flex-flow: row wrap;
@@ -92,7 +88,7 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 50%;
     height: 3vh;
     border: 2px outset aliceblue;
     border-radius: 13.5px;
@@ -154,10 +150,6 @@ input:focus,
     background-color: #28A745;
     color: #121412;
     cursor: pointer;
-}
-
-a#register-nav-btn:hover {
-    color: #121412;
 }
 
 footer {
@@ -438,4 +430,15 @@ img {
 
 .distance-of-btn {
     margin-right: 2%;
+}
+
+#numOfActors {
+    display: none;
+}
+
+#email,
+#password,
+#name,
+#surname {
+    width: 100%;
 }
