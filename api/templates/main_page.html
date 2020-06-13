@@ -17,34 +17,43 @@
     <article>
         <section>
             <button class="delete-account-button">Διαγραφή Λογαριασμού</button>
-            <h1 class="heading">Προτεινόμενες Ταινίες</h1>
+        </section>
+        {% if movies != []%}
+        <section>
+            <h1 class="heading">Ταινίες</h1>
             <section class="movies-layout">
+                {% for movie in movies %}
                 <div>
-                    <p class="heading">Title</p>
-                    <p class="release-year">Έτος Κυκλοφορίας: 2020</p>
-                    <a>Δες περισσότερα...</a>
+                    <p class="heading">{{ movie['title'] }}</p>
+                    <p class="release-year">Έτος Κυκλοφορίας: {{ movie['year'] }}</p>
+                    <a href="info">Δες περισσότερα...</a>
                 </div>
+                {% endfor %}
             </section>
         </section>
+        {% endif %}
         <section>
             <h1 class="heading">Αναζήτηση με βάση:</h1>
-            <form class="search-form">
+            <form class="search-form" action="" method="POST">
                 <label for="searchTitle" class="search-legend"><b class="search-title">Τίτλο</b>
-                    <input id="searchTitle" class="search-input" type="text" placeholder="Π.χ Avengers: Endgame">
+                    <input name="searchTitle" id="searchTitle" class="search-input" type="text" placeholder="Π.χ Avengers: Endgame">
                 </label>
-                <button type="button" class="search-button">Aναζήτηση</button>
+                <button type="submit" class="search-button">Aναζήτηση</button>
             </form>
-            <form class="search-form">
+            <form class="search-form" action="" method="POST">
                 <label for="searchYear" class="search-legend"><b class="search-title">Έτος Κυκλοφορίας</b>
-                    <input id="searchYear" class="search-input" type="text" placeholder="Π.χ 2019">
+                    <input name="searchYear" id="searchYear" class="search-input" type="text" placeholder="Π.χ 2019">
                 </label>
-                <button type="button" class="search-button">Aναζήτηση</button>
+                <button type="submit" class="search-button">Aναζήτηση</button>
             </form>
-            <form class="search-form">
-                <label for="searchActor" class="search-legend"><b class="search-title">Πρωταγωνιστές</b>
-                    <input id="searchActor" class="search-input" type="text" placeholder="Π.χ Robert Downey Jr.">
+            <form class="search-form" action="" method="POST">
+                <label for="searchActor"><b class="search-title">Όνομα ΗΘοποιού</b>
+                    <input name="searchActorName" id="searchActorName" class="search-input" type="text" placeholder="Π.χ Robert">
                 </label>
-                <button type="button" class="search-button">Aναζήτηση</button>
+                <label for="searchActorSurname"><b class="search-title">Επώνυμο ΗΘοποιού</b>
+                    <input name="searchActorSurname" id="searchActorSurname" class="search-input" type="text" placeholder="Π.χ Downey Jr.">
+                </label>
+                <button type="submit" class="search-button">Aναζήτηση</button>
             </form>
         </section>
     </article>

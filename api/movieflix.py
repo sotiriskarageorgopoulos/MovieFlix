@@ -23,10 +23,22 @@ def login():
             return redirect(url_for('admin_page'))
     return render_template("login.html")
 
-@app.route("/mainpage")
+@app.route("/mainpage",methods=['GET','POST'])
 def main_page():
-    
-    return render_template("main_page.html")
+    title = request.form.get("searchTitle")
+    year = request.form.get("searchYear")
+    actor_name = request.form.get("searchActorName")
+    actor_surname = request.form.get("searchActorSurname")
+    searchedMovies = []
+
+    if title is not None:
+        searchedMovies = movies.find({"title":title})
+    if year is not None:
+        searchedMovies = movies.find({"year":year})
+    if actor_name is not None and actor_surname is not None:
+        searchedMovies = movies.find({"actors.surname":actor_surname,"actors.name":actor_name})
+
+    return render_template("main_page.html",movies=searchedMovies)
 
 @app.route("/admin")
 def admin_page():
@@ -42,7 +54,6 @@ def movie_info_page():
 
 @app.route("/register",methods=['GET','POST'])
 def register_page():
-
     name = request.form.get('name')
     email = request.form.get('email')
     password = request.form.get('password')
