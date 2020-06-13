@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/app.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet" type="text/css">
     <title>MovieFlix</title>
 </head>
 <nav>
-    <a href="./main_page.html" class="movieflix-title">MovieFlix</a>
+    <a href="main_page" class="movieflix-title">MovieFlix</a>
     <a href="" class="history-choice">Ιστορικό Κριτικών</a>
     <button type="button" class="register-nav-button" onclick="logOut()">Αποσύνδεση</button>
 </nav>
@@ -50,5 +50,6 @@
     </article>
 </footer>
 <script src="https://use.fontawesome.com/4d997e20ff.js"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
 </html>

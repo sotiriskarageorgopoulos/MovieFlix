@@ -4,24 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/app.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet" type="text/css">
     <title>MovieFlix</title>
 </head>
 <nav>
-    <a href="./login.html" class="movieflix-title-not-user">MovieFlix</a>
+    <a href="login" class="movieflix-title-not-user">MovieFlix</a>
 </nav>
 
 <body>
-    <form class="register-layout">
+    <form class="register-layout" action="" method="POST">
         <p class="register-title">Eγγραφή</p>
         <label for="name">Όνομα*
-            <input id="name" name="name" placeholder="Π.χ Γιώργος" required/>
-        </label>
-        <label for="surname">Επίθετο*
-            <input id="surname" name="surname" placeholder="Π.χ Παπάς" required/>
+            <input type="text" id="name" name="name" placeholder="Π.χ Γιώργος Παπάς" required/>
         </label>
         <label for="email">Email*
-            <input id="email" name="email" placeholder="Π.χ johnsmith@domain.com" required/>
+            <input type="email" id="email" name="email" placeholder="Π.χ johnsmith@domain.com" required/>
+        </label>
+        <label for="surname">Password*
+            <input type="password" id="password" name="password" placeholder="Π.χ 1234" required/>
         </label>
         <button type="submit" class="register-button">Εγγραφή</button>
     </form>
@@ -49,5 +49,6 @@
     </article>
 </footer>
 <script src="https://use.fontawesome.com/4d997e20ff.js"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
 </html>

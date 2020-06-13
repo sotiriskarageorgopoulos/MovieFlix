@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/app.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet" type="text/css">
     <title>MovieFlix</title>
 </head>
 <nav>
-    <a href="./login.html" class="movieflix-title-not-user">MovieFlix</a>
+    <a href="login" class="movieflix-title-not-user">MovieFlix</a>
     <button type="button" class="register-nav-button" onclick="register()">Εγγραφή</button>
 </nav>
 
 <body>
-    <form class="login-layout">
+    <form class="login-layout" action="" method="POST">
         <p class="login-title">Σύνδεση στο Λογαριασμό</p>
         <label for="email">email*:
                 <input type="email" id="email" name="email" required>
@@ -47,6 +47,6 @@
     </article>
 </footer>
 <script src="https://use.fontawesome.com/4d997e20ff.js"></script>
-<script src="../js/index.js"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
 </html>

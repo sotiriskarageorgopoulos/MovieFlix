@@ -56,9 +56,9 @@ const createInputs = () => {
 }
 
 const logOut = () => {
-    window.location.href = "./login.html";
+    window.location.href = "login";
 }
 
 const register = () => {
-    window.location.href = "./register.html";
+    window.location.href = "register";
 }
