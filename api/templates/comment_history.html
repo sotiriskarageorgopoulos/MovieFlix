@@ -8,23 +8,29 @@
     <title>MovieFlix</title>
 </head>
 <nav>
-    <a href="main_page" class="movieflix-title">MovieFlix</a>
+    <a href="mainpage" class="movieflix-title">MovieFlix</a>
     <a href="" class="history-choice">Ιστορικό Κριτικών</a>
     <button type="button" class="register-nav-button" onclick="logOut()">Αποσύνδεση</button>
 </nav>
 
 <body>
-    <h1 class="history-comment-title">Ιστορικό Κριτικών</h1>
+    <h1 class="history-comment-title">Σχόλια</h1>
     <article class="history-layout">
+        {% for c in user["comments"] %}
         <section class="comment-history-layout">
-            <h1>Ταινία</h1>
-            <p class="text-comment-hist">Κείμενο Κριτικής...</p>
-            <p>Διεγραμμένο σχόλιο άν είναι</p>
+            <h1>{{ c["title"] }}</h1>
+            <p class="text-comment-hist">{{ c["comment"] }}</p>
         </section>
+        {% endfor %}
+    </article>
+    <h1 class="history-comment-title">Βαθμολογίες</h1>
+    <article class="history-layout">
+        {% for g in user["grades"] %}
         <section class="grade-history-layout">
-            <h1>Βαθμολογία</h1>
-            <p class="grade-comment-hist">Βαθμός...</p>
+            <h1>{{ g["title"] }}</h1>
+            <p class="grade-comment-hist">Βαθμολογία: {{g["grade"]}}</p>
         </section>
+        {% endfor %}
     </article>
 </body>
 <footer>

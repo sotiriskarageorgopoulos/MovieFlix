@@ -8,78 +8,82 @@
     <title>MovieFlix</title>
 </head>
 <nav>
-    <a href="main_page" class="movieflix-title">MovieFlix</a>
-    <a href="" class="history-choice">Ιστορικό Κριτικών</a>
+    <a href="mainpage" class="movieflix-title">MovieFlix</a>
+    <a href="comment_history" class="history-choice">Ιστορικό Κριτικών</a>
     <button type="button" class="register-nav-button" onclick="logOut()">Αποσύνδεση</button>
 </nav>
 
 <body>
     <article>
+        {% for m in movie %}
         <section class="movie-info-layout">
-            <figure>
-                <p class="heading">Title</p>
-                <img src="../icons/avengers_endgame.jpg" alt="Title">
-                <p class="release-year">Έτος Κυκλοφορίας: 2020</p>
-                <p class="release-year">Πλοκή</p>
-                <p class="release-year">Πρωταγωνιστές</p>
-                <p>Βαθμολογία: 5 stars</p>
-                <button class="delete-grade-button">Διαγραφή Βαθμολογίας μου</button>
-                <p>Η Βαθμολογία μου: 5 stars</p>
-                <p>Βαθμολόγηση</p>
-                <form class="grading-form">
-                    <label for="five">5
+            <div>
+                <p class="heading">{{ m['title'] }}</p>
+                <p class="release-year">Έτος Κυκλοφορίας: {{ m['year'] }}</p>
+                <p class="release-year">{{ m["desc"] }}</p>
+                {% for actor in m["actors"]%}
+                <p class="release-year">{{ actor["name"] }} {{ actor["surname"] }}</p>
+                {% endfor %} {% if m["rating"] == "" %}
+                <p>Βαθμολογία: 0</p>
+                {% else %}
+                <p>Βαθμολογία: {{ m["rating"] }}</p>
+                {% endif %}{% if grade != -1 %}
+                <form action="" method="POST">
+                    <label>Η Βαθμολογία μου: {{ grade }}
+                        <input type="hidden" name="mygrade2" id="mygrade2" value="{{ grade }}">
+                    </label>
+                    <button class="delete-grade-button">Διαγραφή Βαθμολογίας μου</button>
+                </form>
+                {% endif %} {% if grade == -1 %}
+                <p>Βαθμολόγηση:</p>
+                <form class="grading-form" action="" method="POST">
+                    <label for="five" class="checkbox-label">5
                         <input type="checkbox" class="checkbox" name="five" value="5" onclick="checkOneOnly()">
                     </label>
-                    <label for="four">4
+                    <label for="four" class="checkbox-label">4
                         <input type="checkbox" class="checkbox" name="four" value="4" onclick="checkOneOnly()">
                     </label>
-                    <label for="three">3
+                    <label for="three" class="checkbox-label">3
                         <input type="checkbox" class="checkbox" name="three" value="3" onclick="checkOneOnly()">
                     </label>
-                    <label for="two">2
+                    <label for="two" class="checkbox-label">2
                         <input type="checkbox" class="checkbox" name="two" value="2" onclick="checkOneOnly()">
                     </label>
-                    <label for="one">1
+                    <label for="one" class="checkbox-label">1
                         <input type="checkbox" class="checkbox" name="one" value="1" onclick="checkOneOnly()">
                     </label>
+                    <input type="hidden" name="mygrade1" id="mygrade1" value="">
+                    <button type="submit" class="submit-grade-button">Υποβολή</button>
                 </form>
-            </figure>
-            <p class="comment-title">Σχόλια</p>
-            <section class="comment-layout">
-                <div class="each-comment-layout">
-                    <p class="commentator-layout">email σχολιαστή</p>
-                    <p class="text-comment-layout">comment</p>
-                    <button class="delete-comment-button">Διαγραφή</button>
-                </div>
-            </section>
-            <p class="new-comment-title">Εισαγωγή Νέου Σχολίου</p>
-            <textarea name="comment" rows="8" placeholder="Τι πιστεύετε..." maxlength="300"></textarea>
-            <button class="submit-comment-button">Υποβολή</button>
+                {% endif %}
+            </div>
         </section>
+        <aside class="movie-info-layout aside-style">
+            <form action="" method="POST">
+                <div class="comment-layout">
+                    {% for comment in comments %}
+                    <div class="each-comment-layout">
+                        <p class="commentator-layout">{{ comment["e-mail"] }}</p>
+                        <p class="text-comment-layout">{{ comment["comment"] }}</p>
+                        <input type="hidden" name="delwithemail" value="{{ comment['e-mail'] }}">
+                        <input type="hidden" name="delwithcomment" value="{{ comment['comment'] }}">
+                        <input type="hidden" name="delwithtitle" value="{{ m['title'] }}">
+                        <button type="submit" class="delete-comment-button">Διαγραφή</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </form>
+        </aside>
+        <section class="movie-info-layout">
+            <form class="form-comment" action="" method="POST">
+                <p class="new-comment-title">Σχολιάστε...</p>
+                <textarea name="comment" class="text-comment" rows="8" placeholder="Τι πιστεύετε..." maxlength="300"></textarea>
+                <button type="submit" class="submit-comment-button">Υποβολή</button>
+            </form>
+        </section>
+        {% endfor %}
     </article>
 </body>
-<footer>
-    <article class="footer-layout">
-        <section id="footer-msg">
-            <h3>Πάνω από 1000 ταινίες διαθέσιμες!!!</h3>
-        </section>
-        <section id="footer-copyright">
-            <h3>&copy;Copyright
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>
-            </h3>
-        </section>
-        <section id="footer-contact-details">
-            <a href="tel:+302100000000000">
-                <p class="phone-icon icon"> +302100000000000</p>
-            </a>
-            <a href="movie@flix.com">
-                <p class="envelope-icon icon"> movie@flix.com</p>
-            </a>
-        </section>
-    </article>
-</footer>
 <script src="https://use.fontawesome.com/4d997e20ff.js"></script>
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 

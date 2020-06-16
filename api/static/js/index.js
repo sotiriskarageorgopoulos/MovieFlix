@@ -4,6 +4,8 @@ const checkOneOnly = () => {
 
     for (let i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked === true) {
+            let inputEl = document.getElementById("mygrade1");
+            inputEl.value = checkboxes[i].value;
             isChecked = true;
             break;
         }
@@ -61,4 +63,8 @@ const logOut = () => {
 
 const register = () => {
     window.location.href = "register";
+}
+
+const removeGradeForm = (form) => {
+    form.style.display = "none";
 }

@@ -17,9 +17,12 @@
     ],
     "rating": "",
     "comments": [{
-        "desc": "",
-        "grade": "",
-        "isDeleted": ""
+        "e-mail": "",
+        "comment": ""
+    }],
+    "grades": [{
+        "e-mail": "",
+        "grade": "0"
     }]
 } {
     "title": "The Avengers",
@@ -40,9 +43,12 @@
     ],
     "rating": "",
     "comments": [{
-        "desc": "",
-        "grade": "",
-        "isDeleted": ""
+        "e-mail": "",
+        "comment": ""
+    }],
+    "grades": [{
+        "e-mail": "",
+        "grade": "0"
     }]
 } {
     "title": "The Wolf of Wall Street",
@@ -63,8 +69,11 @@
     ],
     "rating": "",
     "comments": [{
-        "desc": "",
-        "grade": "",
-        "isDeleted": ""
+        "e-mail": "",
+        "comment": ""
+    }],
+    "grades": [{
+        "e-mail": "",
+        "grade": "0"
     }]
 }

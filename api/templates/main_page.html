@@ -16,7 +16,10 @@
 <body>
     <article>
         <section>
-            <button class="delete-account-button">Διαγραφή Λογαριασμού</button>
+            <form action="" method="POST">
+                <input type="hidden" name="delete" value="delete">
+                <button class="delete-account-button">Διαγραφή Λογαριασμού</button>
+            </form>
         </section>
         {% if movies != []%}
         <section>
@@ -26,7 +29,7 @@
                 <div>
                     <p class="heading">{{ movie['title'] }}</p>
                     <p class="release-year">Έτος Κυκλοφορίας: {{ movie['year'] }}</p>
-                    <a href="info">Δες περισσότερα...</a>
+                    <a href="info?title={{ movie['title'] }}">Δες περισσότερα...</a>
                 </div>
                 {% endfor %}
             </section>
@@ -36,7 +39,8 @@
             <h1 class="heading">Αναζήτηση με βάση:</h1>
             <form class="search-form" action="" method="POST">
                 <label for="searchTitle" class="search-legend"><b class="search-title">Τίτλο</b>
-                    <input name="searchTitle" id="searchTitle" class="search-input" type="text" placeholder="Π.χ Avengers: Endgame">
+                    <input name="searchTitle" id="searchTitle" class="search-input" type="text"
+                        placeholder="Π.χ Avengers: Endgame">
                 </label>
                 <button type="submit" class="search-button">Aναζήτηση</button>
             </form>
@@ -48,10 +52,12 @@
             </form>
             <form class="search-form" action="" method="POST">
                 <label for="searchActor"><b class="search-title">Όνομα ΗΘοποιού</b>
-                    <input name="searchActorName" id="searchActorName" class="search-input" type="text" placeholder="Π.χ Robert">
+                    <input name="searchActorName" id="searchActorName" class="search-input" type="text"
+                        placeholder="Π.χ Robert">
                 </label>
                 <label for="searchActorSurname"><b class="search-title">Επώνυμο ΗΘοποιού</b>
-                    <input name="searchActorSurname" id="searchActorSurname" class="search-input" type="text" placeholder="Π.χ Downey Jr.">
+                    <input name="searchActorSurname" id="searchActorSurname" class="search-input" type="text"
+                        placeholder="Π.χ Downey Jr.">
                 </label>
                 <button type="submit" class="search-button">Aναζήτηση</button>
             </form>

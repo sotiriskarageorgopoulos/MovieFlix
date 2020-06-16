@@ -3,9 +3,8 @@
     "e-mail": "sot@domain.com",
     "password": "12345",
     "comments": [{
-        "desc": "",
-        "grade": "",
-        "isDeleted": ""
+        "title": "",
+        "comment": ""
     }],
     "category": "admin"
 } {
@@ -13,9 +12,12 @@
     "e-mail": "sp@domain.com",
     "password": "12345",
     "comments": [{
-        "desc": "",
-        "grade": "",
-        "isDeleted": ""
+        "title": "",
+        "comment": ""
+    }],
+    "grades": [{
+        "title": "",
+        "grade": "0"
     }],
     "category": "user"
 }

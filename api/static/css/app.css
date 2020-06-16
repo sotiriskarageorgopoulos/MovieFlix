@@ -84,6 +84,7 @@ nav {
     margin: 10% auto 0% auto;
 }
 
+.text-comment,
 label {
     display: flex;
     flex-flow: column nowrap;
@@ -129,6 +130,7 @@ input {
     font-size: 20px;
 }
 
+.submit-grade-button:focus,
 .update-button:focus,
 .delete-button:focus,
 .insert-button:focus,
@@ -258,7 +260,8 @@ img {
 .movie-info-layout {
     display: flex;
     flex-flow: column wrap;
-    width: 17%;
+    width: 40%;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
     background-color: #121412;
@@ -271,10 +274,16 @@ img {
 .grading-form {
     display: flex;
     flex-flow: row nowrap;
+    width: 17%;
 }
 
 .checkbox {
     width: 10px;
+    padding: 0%;
+}
+
+.checkbox-label {
+    margin-right: 20%;
 }
 
 .comment-layout {
@@ -296,7 +305,8 @@ img {
 }
 
 .each-comment-layout {
-    margin: 0% auto 0% auto;
+    position: relative;
+    margin: 0% auto 3% auto;
     border: 4px inset #121412;
 }
 
@@ -305,6 +315,7 @@ img {
     margin-left: 33%;
 }
 
+.submit-grade-button,
 .delete-movie-layout,
 .delete-account-button,
 .delete-comment-button,
@@ -330,14 +341,18 @@ img {
     font-size: 25px;
 }
 
+.submit-grade-button,
 .submit-comment-button {
-    margin-top: 2%;
     background-color: #0ba32a;
     color: aliceblue;
     border: 3px outset #0ba32a;
-    width: 40%;
+    padding: 0%;
+    margin-bottom: 15%;
+    width: 20%;
+    height: 3vh;
 }
 
+.submit-grade-button:hover,
 .submit-comment-button:hover {
     background-color: #14fa43;
     border: 3px outset #14fa43;
@@ -436,6 +451,7 @@ img {
     margin-right: 2%;
 }
 
+#mygrade,
 #numOfActors {
     display: none;
 }
@@ -445,4 +461,27 @@ img {
 #name,
 #surname {
     width: 100%;
+}
+
+.form-comment {
+    margin-top: 1%;
+    flex-flow: column nowrap;
+    padding: 0%;
+}
+
+.text-comment {
+    position: relative;
+    margin-top: 4%;
+    padding-left: 0.5%;
+    width: 100%;
+}
+
+.aside-style {
+    float: left;
+    background-color: #5a5a5a;
+}
+
+.submit-grade-button {
+    width: 100%;
+    margin-left: 10%;
 }
