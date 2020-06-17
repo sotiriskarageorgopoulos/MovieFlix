@@ -2,22 +2,14 @@
     "name": "Sotiris",
     "e-mail": "sot@domain.com",
     "password": "12345",
-    "comments": [{
-        "title": "",
-        "comment": ""
-    }],
+    "comments": [],
+    "grades": [],
     "category": "admin"
 } {
     "name": "Spiros",
     "e-mail": "sp@domain.com",
     "password": "12345",
-    "comments": [{
-        "title": "",
-        "comment": ""
-    }],
-    "grades": [{
-        "title": "",
-        "grade": "0"
-    }],
+    "comments": [],
+    "grades": [],
     "category": "user"
 }

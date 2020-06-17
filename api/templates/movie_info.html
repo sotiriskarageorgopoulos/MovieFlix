@@ -8,8 +8,13 @@
     <title>MovieFlix</title>
 </head>
 <nav>
+    {% for u in user %} {% if u["category"] == "admin" %}
+    <a href="admin" class="movieflix-title">MovieFlix</a>
+    <a href="users" class="users">Χρήστες</a>
+    <a href="mainpage" class="searching-movies">Αναζήτηση</a>
+    <a href="comment_history" class="admin-history-comment">Ιστορικό Κριτικών</a> {% elif u["category"] == "user" %}
     <a href="mainpage" class="movieflix-title">MovieFlix</a>
-    <a href="comment_history" class="history-choice">Ιστορικό Κριτικών</a>
+    <a href="comment_history" class="history-choice">Ιστορικό Κριτικών</a> {% endif %} {% endfor %}
     <button type="button" class="register-nav-button" onclick="logOut()">Αποσύνδεση</button>
 </nav>
 
@@ -59,20 +64,19 @@
             </div>
         </section>
         <aside class="movie-info-layout aside-style">
-            <form action="" method="POST">
-                <div class="comment-layout">
-                    {% for comment in comments %}
-                    <div class="each-comment-layout">
-                        <p class="commentator-layout">{{ comment["e-mail"] }}</p>
-                        <p class="text-comment-layout">{{ comment["comment"] }}</p>
-                        <input type="hidden" name="delwithemail" value="{{ comment['e-mail'] }}">
-                        <input type="hidden" name="delwithcomment" value="{{ comment['comment'] }}">
-                        <input type="hidden" name="delwithtitle" value="{{ m['title'] }}">
-                        <button type="submit" class="delete-comment-button">Διαγραφή</button>
-                    </div>
-                    {% endfor %}
+            {% for comment in comments %}
+            <form action="" method="POST" class="comment-layout">
+                <div class="each-comment-layout">
+                    <p class="commentator-layout">{{ comment["e-mail"] }}</p>
+                    <p class="text-comment-layout">{{ comment["comment"] }}</p>
+                    <input type="hidden" name="delwithemail" value="{{ comment['e-mail'] }}">
+                    <input type="hidden" name="delwithcomment" value="{{ comment['comment'] }}">
+                    <input type="hidden" name="delwithtitle" value="{{ m['title'] }}"> {% set _stub = user.rewind() %} {% for u in user %} {% if u["category"] == "admin" %}
+                    <button type="submit" class="delete-comment-button">Διαγραφή</button> {% elif comment["e-mail"] == u["e-mail"] %}
+                    <button type="submit" class="delete-comment-button">Διαγραφή</button> {% endif %} {% endfor %}
                 </div>
             </form>
+            {% endfor %}
         </aside>
         <section class="movie-info-layout">
             <form class="form-comment" action="" method="POST">

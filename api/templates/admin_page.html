@@ -9,18 +9,22 @@
 </head>
 <nav>
     <a href="" class="movieflix-title">MovieFlix</a>
-    <a href="users_comments" class="user-comment">Σχόλια Χρηστών</a>
     <a href="users" class="users">Χρήστες</a>
+    <a href="mainpage" class="searching-movies">Αναζήτηση</a>
+    <a href="comment_history" class="admin-history-comment">Ιστορικό Κριτικών</a>
     <button type="button" class="register-nav-button" onclick="logOut()">Απόσυνδεση</button>
 </nav>
 
 <body>
     <article>
         <section class="insert-movie-layout">
-            <form>
+            <form action="" method="POST">
                 <h1>Εισαγωγή Ταινίας</h1>
                 <legend for="title" class="admin-input">Τίτλος ταινίας*
                     <input type="text" id="title" name="title" />
+                </legend>
+                <legend for="year" class="admin-input">Έτος*
+                    <input type="text" id="year" name="year" />
                 </legend>
                 <legend for="numOfActors" class="admin-input">Πλήθος ΗΘοποιών*
                     <input type="number" id="numOfActors" name="numOfActors" min="0" onchange="createInputs()" />
@@ -30,30 +34,51 @@
             </form>
         </section>
         <section class="delete-movie-layout">
-            <form>
+            <form action="" method="POST">
                 <h1>Διαγραφή Ταινίας</h1>
                 <legend for="title">Τίτλος ταινίας*
-                    <input type="text" id="title" name="title" />
+                    <input type="text" id="title" name="deltitle" />
                 </legend>
                 <button type="submit" class="delete-button">Διαγραφή</button>
             </form>
         </section>
         <section class="update-movie-layout">
-            <form>
-                <h1>Ενημέρωση Ταινίας</h1>
+            <form action="" method="POST">
+                <h1>Ενημέρωση Τίτλου</h1>
                 <legend for="title" class="admin-input">Τίτλος ταινίας*
-                    <input type="text" id="title" name="title" />
+                    <input type="text" id="title" name="upNewTitle" />
+                </legend>
+                <legend for="title" class="admin-input">Νέος Τίτλος*
+                    <input type="text" id="title" name="newTitle" />
+                </legend>
+                <button type="submit" class="update-button">Ενημέρωση</button>
+            </form>
+            <form action="" method="POST">
+                <h1>Ενημέρωση Έτους</h1>
+                <legend for="title" class="admin-input">Τίτλος ταινίας*
+                    <input type="text" id="title" name="upYearTitle" />
                 </legend>
                 <legend for="releaseYear" class="admin-input">Έτος Κυκλοφορίας
-                    <input type="number" id="releaseYear" name="numOfActors" min="0" />
+                    <input type="number" id="releaseYear" name="releaseYear" min="0" />
                 </legend>
-                <input type="number" id="numOfActors" name="numOfActors" min="0" />
-                <div id="inputActors"></div>
-                <div id="newActors"></div>
+                <button type="submit" class="update-button">Ενημέρωση</button>
+            </form>
+            <form action="" method="POST">
+                <h1>Ενημέρωση Πλοκής</h1>
+                <legend for="title" class="admin-input">Τίτλος ταινίας*
+                    <input type="text" id="title" name="upPlotTitle" />
+                </legend>
                 <label for="plot">Πλοκή
                     <textarea name="plot" id="plot" rows="8" maxlength="300"></textarea>
                 </label>
                 <button type="submit" class="update-button">Ενημέρωση</button>
+            </form>
+            <form>
+                <h1>Ενημέρωση ΗΘοποιών</h1>
+                <legend for="title" class="admin-input">Τίτλος ταινίας*
+                    <input type="text" id="upActorTitle" name="upActorTitle" />
+                </legend>
+                <button type="button" class="update-button" onclick="displayActorForm()">Yποβολή</button>
             </form>
         </section>
     </article>

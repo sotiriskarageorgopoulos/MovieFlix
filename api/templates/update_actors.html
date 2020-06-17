@@ -8,22 +8,36 @@
     <title>MovieFlix</title>
 </head>
 <nav>
-    <a href="admin" class="movieflix-title">MovieFlix</a>
-    <a href="users_comments" class="user-comment">Σχόλια Χρηστών</a>
+    <a href="" class="movieflix-title">MovieFlix</a>
     <a href="users" class="users">Χρήστες</a>
+    <a href="mainpage" class="searching-movies">Αναζήτηση</a>
+    <a href="comment_history" class="admin-history-comment">Ιστορικό Κριτικών</a>
     <button type="button" class="register-nav-button" onclick="logOut()">Απόσυνδεση</button>
 </nav>
 
 <body>
-    <h1 class="history-comment-title">Ιστορικό Κριτικών</h1>
-    <article class="history-layout">
-        <section class="comment-history-layout">
-            <h1>Ταινία</h1>
-            <h1>Χρήστης</h1>
-            <p class="text-comment-hist">Κείμενο Κριτικής...</p>
+    {% for m in movie %}
+    <section class="update-movie-layout">
+        <h1>Ενημέρωση Πρωταγωνιστών</h1>
+        {% for a in m["actors"] %}
+        <form action="" method="POST">
+            <h1>Διαγραφή Πρωταγωνιστών</h1>
+            <p class="update-actor-text">{{ a["name"] }} {{ a["surname"] }}</p>
+            <input type="hidden" name="delNameActor" value="{{ a['name'] }}">
+            <input type="hidden" name="delSurnameActor" value="{{ a['surname'] }}">
             <button type="submit" class="delete-button">Διαγραφή</button>
-        </section>
-    </article>
+        </form>
+        {% endfor %}
+        <form action="" method="POST">
+            <h1>Εισαγωγή Πρωταγωνιστών</h1>
+            <button type="button" class="update-button add-actor-btn" onclick="createActorsFields()">Προσθήκη
+                Ηθοποιού</button>
+            <div id="inputActors1"></div>
+            <div id="actorsCount"></div>
+            <button type="submit" class="update-button">Ενημέρωση</button>
+        </form>
+    </section>
+    {% endfor %}
 </body>
 <footer>
     <article class="footer-layout">

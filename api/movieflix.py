@@ -12,6 +12,41 @@ movies = db['Movies']
 app = Flask(__name__,template_folder="templates")
 app.config["SECRET_KEY"] = "OCML3BRawWEUeaxcuKHLpw"
 
+def insertNewActors(num_of_actors,title):
+    for i in range(int(num_of_actors)):
+        name = request.form.get("name"+str(i))
+        surname = request.form.get("surname"+str(i))
+        movies.update_one({"title":title},{"$push":{"actors": {"name":name,"surname":surname}}})
+
+def deleteMovie(title):
+    count_of_movies = movies.find({"title":title}).count()
+    if count_of_movies > 0:
+        cursor = movies.aggregate([{"$match":{"title":title}},{"$group":{"_id": "null","minyear":{"$min":"$year"}}}])
+        results = [c for c in cursor]
+        min_year = results[0]["minyear"]
+        movies.delete_one({"title":title,"year":min_year})
+    elif count_of_movies == 1:
+        movies.delete_one({"title":title})
+
+def insertMovie(num,title,year):
+    movie = {
+            "title":title,
+            "year":year,
+            "desc":"",
+            "actors":[],
+            "rating":"",
+            "grades":[]
+    }
+
+    d={}
+
+    for i in range(int(num)):
+        d["name"] = request.form.get("name"+str(i))
+        d["surname"] = request.form.get("surname"+str(i))
+        movie["actors"].append(d.copy())
+
+    movies.insert_one(movie)
+
 def computeRating(title):
     movie = movies.find_one({"title":title})
     if movie is not None:
@@ -39,6 +74,11 @@ def getComments(title):
     movie = movies.find_one({"title":title})
     if movie is not None:
        return movie["comments"]
+
+def getActors(title):
+    movie = movies.find_one({"title":title})
+    if movie is not None:
+       return movie["actors"]
 
 def insertComment(comment,user_email,title):
     users.update_one({"e-mail":user_email},{"$push":{"comments": {"title":title,"comment":comment}}})
@@ -81,6 +121,7 @@ def main_page():
     actor_surname = request.form.get("searchActorSurname")
     delete_account = request.form.get("delete")
     user_email = session.get('user_email')
+    user = users.find({"e-mail":user_email})
     searchedMovies = []
     
     if delete_account == "delete":
@@ -93,24 +134,71 @@ def main_page():
     if actor_name is not None and actor_surname is not None:
         searchedMovies = movies.find({"actors.surname":actor_surname,"actors.name":actor_name})
 
-    return render_template("main_page.html",movies=searchedMovies)
+    return render_template("main_page.html",movies=searchedMovies,user=user)
 
-@app.route("/admin")
+@app.route("/admin",methods=['GET','POST'])
 def admin_page():
+    title = request.form.get("title")
+    year = request.form.get("year")
+    deltitle = request.form.get("deltitle")
+    num_of_actors = request.form.get("numOfActors")
+    up_new_title = request.form.get("upNewTitle")
+    up_year_title = request.form.get("upYearTitle")
+    up_plot_title = request.form.get("upPlotTitle")
+    new_title = request.form.get("newTitle")
+    release_year = request.form.get("releaseYear")
+    plot = request.form.get("plot")
+
+    if up_new_title is not None and new_title is not None:
+        movies.update_one({"title":up_new_title},{"$set":{"title":new_title}})
+    if up_year_title is not None and release_year is not None:
+        movies.update_one({"title":up_year_title},{"$set":{"year":release_year}})
+    if up_plot_title is not None and plot is not None:
+        movies.update_one({"title":up_plot_title},{"$set":{"desc":plot}})
+    
+    if num_of_actors is not None and title is not None and year is not None:
+        insertMovie(num_of_actors,title,year)
+
+    if deltitle is not None:
+        deleteMovie(deltitle)
+
     return render_template("admin_page.html")
+
+@app.route("/update_actors",methods=['GET','POST'])
+def update_actors_page():
+    title = request.args.get("title")
+    movie = movies.find({"title":title})
+    del_name_actor = request.form.get("delNameActor")
+    del_surname_actor = request.form.get("delSurnameActor")
+    num_of_actors = request.form.get("actorsCounter")
+
+    if num_of_actors is not None:
+       insertNewActors(num_of_actors,title)
+
+    if del_name_actor is not None and del_surname_actor is not None:
+        movies.update_many({},{"$pull":{"actors":{"name":del_name_actor,"surname":del_surname_actor}}})
+
+    return render_template("update_actors.html",movie=movie)
 
 @app.route("/comment_history")
 def comment_history_page():
     user_email = session.get('user_email')
     user = users.find_one({"e-mail":user_email})
-
-    return render_template("comment_history.html",user=user)
+    userCursor = {}
+    if user is not None:
+        if user["category"] == "admin":
+            userCursor = users.find({})
+        elif user["category"] == "user":
+            userCursor = users.find({"e-mail":user_email})
+    user = users.find({"e-mail":user_email})
+    return render_template("comment_history.html",userCursor=userCursor,user=user)
 
 @app.route("/info",methods=['GET','POST'])
 def movie_info_page():
     title = request.args.get("title")
     movie = movies.find({"title":title})
     user_email = session.get('user_email')
+    user = users.find({"e-mail":user_email})
     comment = request.form.get("comment")
     delWithEmail = request.form.get("delwithemail")
     delWithTitle = request.form.get("delwithtitle")
@@ -134,7 +222,7 @@ def movie_info_page():
 
     movie_comments = getComments(title)
 
-    return render_template("movie_info.html",movie=movie,grade=grade,comments=movie_comments)
+    return render_template("movie_info.html",movie=movie,grade=grade,comments=movie_comments,user=user)
 
 @app.route("/register",methods=['GET','POST'])
 def register_page():
@@ -153,13 +241,16 @@ def register_page():
         users.insert_one(newUser)
     return render_template("register.html")
 
-@app.route("/users")
+@app.route("/users",methods=['GET','POST'])
 def users_page():
-    return render_template("users.html")
-
-@app.route("/users_comments")
-def users_comments_page():
-    return render_template("users_comments.html")
+    usersCursor = users.find({})
+    do_admin_mail = request.form.get("doAdmin")
+    del_user_mail = request.form.get("deleteUser")
+    if do_admin_mail is not None:
+       users.update_one({"e-mail":do_admin_mail},{"$set":{"category":"admin"}})
+    if del_user_mail is not None:
+       users.delete_one({"e-mail":del_user_mail})
+    return render_template("users.html", usersCursor= usersCursor)
 
 app.run(debug=True, host='0.0.0.0', port=5000)
    

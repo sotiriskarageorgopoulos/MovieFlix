@@ -8,30 +8,62 @@
     <title>MovieFlix</title>
 </head>
 <nav>
+    {% for u in user %} {% if u["category"] == "admin" %}
+    <a href="admin" class="movieflix-title">MovieFlix</a>
+    <a href="users" class="users">Χρήστες</a>
+    <a href="mainpage" class="searching-movies">Αναζήτηση</a>
+    <a href="comment_history" class="admin-history-comment">Ιστορικό Κριτικών</a> {% elif u["category"] == "user" %}
     <a href="mainpage" class="movieflix-title">MovieFlix</a>
-    <a href="" class="history-choice">Ιστορικό Κριτικών</a>
+    <a href="comment_history" class="history-choice">Ιστορικό Κριτικών</a> {% endif %} {% endfor %}
     <button type="button" class="register-nav-button" onclick="logOut()">Αποσύνδεση</button>
 </nav>
 
 <body>
+    {% set _stub = user.rewind() %} {% for us in user %} {% if us["category"] == "admin" %} {% set _stub = userCursor.rewind() %} {% for u in userCursor %} {% if u["comments"]|count > 0 %}
     <h1 class="history-comment-title">Σχόλια</h1>
     <article class="history-layout">
-        {% for c in user["comments"] %}
+        {% for c in u["comments"] %} {% if c["title"] != "" and c["comment"] != "" %}
         <section class="comment-history-layout">
-            <h1>{{ c["title"] }}</h1>
+            <h1>{{ u["name"] }}</h1>
+            <p class="text-comment-hist">{{ c["title"] }}</p>
             <p class="text-comment-hist">{{ c["comment"] }}</p>
         </section>
-        {% endfor %}
+        {% endif %} {% endfor %} {% endif %}
     </article>
+    {% if u["grades"]|count > 0 %}
     <h1 class="history-comment-title">Βαθμολογίες</h1>
     <article class="history-layout">
-        {% for g in user["grades"] %}
+        {% for g in u["grades"] %} {% if g["title"] != "" and g["grade"] != "" %}
         <section class="grade-history-layout">
-            <h1>{{ g["title"] }}</h1>
+            <h1>{{ u["name"] }}</h1>
+            <p class="grade-comment-hist">{{ g["title"] }}</p>
             <p class="grade-comment-hist">Βαθμολογία: {{g["grade"]}}</p>
         </section>
-        {% endfor %}
+        {% endif %} {% endfor %}
     </article>
+    {% endif %} {% endfor %} {% elif us["category"] == "user" %}
+    <h1 class="history-comment-title">Σχόλια</h1>
+    <article class="history-layout">
+        {% for c in us["comments"] %} {% if c["title"] != "" and c["comment"] != "" %}
+        <section class="comment-history-layout">
+            <h1>{{ us["name"] }}</h1>
+            <p class="text-comment-hist">{{ c["title"] }}</p>
+            <p class="text-comment-hist">{{ c["comment"] }}</p>
+        </section>
+        {% endif %} {% endfor %}
+    </article>
+    {% if us["grades"]|count > 0 %}
+    <h1 class="history-comment-title">Βαθμολογίες</h1>
+    <article class="history-layout">
+        {% for g in us["grades"] %} {% if g["title"] != "" and g["grade"] != "" %}
+        <section class="grade-history-layout">
+            <h1>{{ us["name"] }}</h1>
+            <p class="grade-comment-hist">{{ g["title"] }}</p>
+            <p class="grade-comment-hist">Βαθμολογία: {{g["grade"]}}</p>
+        </section>
+        {% endif %} {% endfor %}
+    </article>
+    {% endif %} {% endif %} {% endfor %}
 </body>
 <footer>
     <article class="footer-layout">

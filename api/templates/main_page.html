@@ -8,8 +8,13 @@
     <title>MovieFlix</title>
 </head>
 <nav>
-    <a href="" class="movieflix-title">MovieFlix</a>
-    <a href="comment_history" class="history-choice">Ιστορικό Κριτικών</a>
+    {% for u in user %} {% if u["category"] == "admin" %}
+    <a href="admin" class="movieflix-title">MovieFlix</a>
+    <a href="users" class="users">Χρήστες</a>
+    <a href="mainpage" class="searching-movies">Αναζήτηση</a>
+    <a href="comment_history" class="admin-history-comment">Ιστορικό Κριτικών</a> {% elif u["category"] == "user" %}
+    <a href="mainpage" class="movieflix-title">MovieFlix</a>
+    <a href="comment_history" class="history-choice">Ιστορικό Κριτικών</a> {% endif %} {% endfor %}
     <button type="button" class="register-nav-button" onclick="logOut()">Αποσύνδεση</button>
 </nav>
 
@@ -50,7 +55,7 @@
                 </label>
                 <button type="submit" class="search-button">Aναζήτηση</button>
             </form>
-            <form class="search-form" action="" method="POST">
+            <form class="search-form search-actor-form" action="" method="POST">
                 <label for="searchActor"><b class="search-title">Όνομα ΗΘοποιού</b>
                     <input name="searchActorName" id="searchActorName" class="search-input" type="text"
                         placeholder="Π.χ Robert">

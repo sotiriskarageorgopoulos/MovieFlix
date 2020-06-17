@@ -9,18 +9,31 @@
 </head>
 <nav>
     <a href="admin" class="movieflix-title">MovieFlix</a>
-    <a href="users_comments" class="user-comment">Σχόλια Χρηστών</a>
     <a href="users" class="users">Χρήστες</a>
+    <a href="mainpage" class="searching-movies">Αναζήτηση</a>
+    <a href="comment_history" class="admin-history-comment">Ιστορικό Κριτικών</a>
     <button type="button" class="register-nav-button" onclick="logOut()">Απόσυνδεση</button>
 </nav>
 
 <body>
     <h1 class="user-comment-title">Χρήστες</h1>
-    <section class="users-history-layout">
-        <p class="text-user">Χρήστης</p>
-        <p class="text-user">Απλός ή Διαχειριστής</p>
-        <button type="submit" class="delete-button distance-of-btn">Διαχειριστής</button>
-        <button type="submit" class="delete-button">Διαγραφή</button>
+    <section class="users-history-layout positioning-forms">
+        {% for u in usersCursor %}
+        <div class="user-form-layout">
+            <p class="text-user">Χρήστης: {{ u["name"] }}</p>
+            <p class="text-user">Κατηγορία: {{ u["category"] }}</p>
+            {% if u["category"] == "user" %}
+            <form action="" method="POST">
+                <input type="hidden" name="doAdmin" value="{{ u['e-mail'] }}">
+                <button type="submit" class="admin-button distance-of-btn">Διαχειριστής</button>
+            </form>
+            <form action="" method="POST">
+                <input type="hidden" name="deleteUser" value="{{ u['e-mail'] }}">
+                <button type="submit" class="delete-button">Διαγραφή</button>
+            </form>
+            {% endif %}
+        </div>
+        {% endfor %}
     </section>
 </body>
 

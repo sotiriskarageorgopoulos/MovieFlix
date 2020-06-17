@@ -16,14 +16,8 @@
         }
     ],
     "rating": "",
-    "comments": [{
-        "e-mail": "",
-        "comment": ""
-    }],
-    "grades": [{
-        "e-mail": "",
-        "grade": "0"
-    }]
+    "comments": [],
+    "grades": []
 } {
     "title": "The Avengers",
     "year": "2012",
@@ -42,14 +36,8 @@
         }
     ],
     "rating": "",
-    "comments": [{
-        "e-mail": "",
-        "comment": ""
-    }],
-    "grades": [{
-        "e-mail": "",
-        "grade": "0"
-    }]
+    "comments": [],
+    "grades": []
 } {
     "title": "The Wolf of Wall Street",
     "year": "2013",
@@ -68,12 +56,6 @@
         }
     ],
     "rating": "",
-    "comments": [{
-        "e-mail": "",
-        "comment": ""
-    }],
-    "grades": [{
-        "e-mail": "",
-        "grade": "0"
-    }]
+    "comments": [],
+    "grades": []
 }

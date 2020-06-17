@@ -24,8 +24,9 @@ nav {
     width: 101%;
 }
 
+.admin-history-comment,
+.searching-movies,
 .users,
-.user-comment,
 .history-choice,
 .movieflix-title-not-user,
 .movieflix-title {
@@ -39,8 +40,9 @@ nav {
     margin-right: 85%;
 }
 
+.admin-history-comment,
+.searching-movies,
 .users,
-.user-comment,
 .history-choice {
     font-size: 20px;
     padding-top: 2%;
@@ -51,12 +53,16 @@ nav {
     margin-right: 70%;
 }
 
+.searching-movies,
 .users {
-    margin-right: 65%;
+    margin-right: 2%;
+}
+
+.admin-history-comment {
+    margin-right: 55%;
 }
 
 .users:hover,
-.user-comment:hover,
 .history-choice:hover {
     color: #5a5a5a;
 }
@@ -99,6 +105,7 @@ input {
     border-radius: 13.5px;
 }
 
+.admin-button,
 .update-button,
 .delete-button,
 .insert-button,
@@ -130,6 +137,7 @@ input {
     font-size: 20px;
 }
 
+.admin-button:focus,
 .submit-grade-button:focus,
 .update-button:focus,
 .delete-button:focus,
@@ -146,6 +154,7 @@ input:focus,
     outline: none;
 }
 
+.admin-button:hover,
 .update-button:hover,
 .delete-button:hover,
 .insert-button:hover,
@@ -430,6 +439,7 @@ img {
     margin-bottom: 4%;
 }
 
+.admin-button,
 .update-button,
 .delete-button {
     margin-top: 4%;
@@ -451,8 +461,7 @@ img {
     margin-right: 2%;
 }
 
-#mygrade,
-#numOfActors {
+#mygrade {
     display: none;
 }
 
@@ -484,4 +493,30 @@ img {
 .submit-grade-button {
     width: 100%;
     margin-left: 10%;
+}
+
+.add-actor-btn {
+    width: 70%;
+}
+
+.update-actor-text {
+    color: aliceblue;
+    font-size: 15px;
+}
+
+.positioning-forms {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.user-form-layout {
+    border: 3px outset aliceblue;
+    font-size: 16px;
+    margin-bottom: 2%;
+    padding-left: 2%;
+}
+
+.search-actor-form {
+    display: flex;
+    flex-flow: column nowrap;
 }
