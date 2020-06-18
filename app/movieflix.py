@@ -1,9 +1,10 @@
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
 from flask import Flask,request,jsonify,redirect,Response,render_template,url_for,session
-import json
+import os
 
-mongo = MongoClient('mongodb://localhost:27017/')
+mongodb_hostname = os.environ.get("MONGO_HOSTNAME","localhost")
+mongo = MongoClient('mongodb://'+mongodb_hostname+':27017/')
 
 db = mongo['Movieflix']
 users = db['Users']
