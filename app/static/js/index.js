@@ -40,6 +40,7 @@ const createInputs = () => {
         let inputName = document.createElement("input");
         inputName.type = "text";
         inputName.required = true;
+        inputName.name = "name" + i;
         inputName.id = "name" + i;
         labelName.appendChild(inputName);
         divInputActors.appendChild(labelName);
@@ -50,6 +51,7 @@ const createInputs = () => {
         let inputSurname = document.createElement("input");
         inputSurname.type = "text";
         inputSurname.required = true;
+        inputSurname.name = "surname" + i;
         inputSurname.id = "surname" + i;
         labelSurname.appendChild(inputSurname);
         divInputActors.appendChild(labelSurname);

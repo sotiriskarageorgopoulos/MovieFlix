@@ -29,15 +29,15 @@
         {% if movies != []%}
         <section>
             <h1 class="heading">Ταινίες</h1>
+            {% for movie in movies %}
             <section class="movies-layout">
-                {% for movie in movies %}
                 <div>
                     <p class="heading">{{ movie['title'] }}</p>
                     <p class="release-year">Έτος Κυκλοφορίας: {{ movie['year'] }}</p>
                     <a href="info?title={{ movie['title'] }}">Δες περισσότερα...</a>
                 </div>
-                {% endfor %}
             </section>
+            {% endfor %}
         </section>
         {% endif %}
         <section>

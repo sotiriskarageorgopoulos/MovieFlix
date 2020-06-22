@@ -36,6 +36,7 @@ def insertMovie(num,title,year):
             "desc":"",
             "actors":[],
             "rating":"",
+            "comments": [],
             "grades":[]
     }
 
@@ -43,7 +44,9 @@ def insertMovie(num,title,year):
 
     for i in range(int(num)):
         d["name"] = request.form.get("name"+str(i))
+        print(d["name"])
         d["surname"] = request.form.get("surname"+str(i))
+        print(d["surname"])
         movie["actors"].append(d.copy())
 
     movies.insert_one(movie)
@@ -54,7 +57,11 @@ def computeRating(title):
         s = 0
         for i in range(len(movie["grades"])):
             s += int(movie["grades"][i]["grade"])
-        avg = s/len(movie["grades"])
+        count_of_grades = len(movie["grades"])
+        if count_of_grades > 0:
+            avg = s/count_of_grades
+        else:
+            avg = 0
         movies.update_one({"title":title},{"$set":{"rating":avg}})
 
 def deleteGrade(delete_grade,user_email,title):
