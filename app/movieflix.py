@@ -44,9 +44,7 @@ def insertMovie(num,title,year):
 
     for i in range(int(num)):
         d["name"] = request.form.get("name"+str(i))
-        print(d["name"])
         d["surname"] = request.form.get("surname"+str(i))
-        print(d["surname"])
         movie["actors"].append(d.copy())
 
     movies.insert_one(movie)
