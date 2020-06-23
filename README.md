@@ -115,6 +115,6 @@ sudo docker exec -it mongodb mongoimport --db=Movieflix --collection=Movies --fi
 
 ## Δημιουργός
 
-* **Sotirios Karageorgopoulos**
+* **Σωτήριος Καραγεωργόπουλος**
 
 
