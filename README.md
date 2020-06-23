@@ -113,7 +113,7 @@ sudo docker exec -it mongodb mongoimport --db=Movieflix --collection=Movies --fi
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 * [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/) 
 
-## Author
+## Δημιουργός
 
 * **Sotirios Karageorgopoulos**
 
